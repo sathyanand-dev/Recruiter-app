@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 export default function JobList(){
   const [jobs, setJobs] = useState([]);
   const [q, setQ] = useState('');
-  const [showCreate, setShowCreate] = useState(false);
+  // showCreate removed: Create flow now opens on a separate page (/create)
   const nav = useNavigate();
 
   const fetchJobs = async () => {
@@ -18,35 +18,25 @@ export default function JobList(){
 
   useEffect(()=>{ fetchJobs(); }, []);
 
-  // Called after inline CreateJob publishes
+  // Called after CreateJob publishes (when using separate page)
   const handlePublished = (jobId) => {
-    // hide create form and refresh list, then navigate to success
-    setShowCreate(false);
     fetchJobs();
     nav(`/post-success/${jobId}`);
   };
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl">Your jobs</h2>
-        <div>
-          <button onClick={()=>setShowCreate(s=>!s)} className="py-1 px-3 bg-green-600 text-white rounded">{showCreate ? 'Close' : 'Create job'}</button>
+      <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <h2 className="text-xl mb-3 sm:mb-0">Your jobs</h2>
+        <div className="w-full sm:w-auto">
+          <button onClick={()=>nav('/create')} className="py-2 px-3 bg-green-600 text-white rounded w-full sm:w-auto">Create job</button>
         </div>
       </div>
 
-      {showCreate && (
-        <div className="mb-6 p-4 bg-white rounded shadow">
-          {/* Wrap CreateJob in ErrorBoundary to avoid white screens when an editor or other runtime error occurs */}
-          <ErrorBoundary>
-            <CreateJob onPublished={handlePublished} />
-          </ErrorBoundary>
-        </div>
-      )}
 
-      <div className="mb-4">
-        <input placeholder="Search by title" value={q} onChange={e=>setQ(e.target.value)} className="p-2 border rounded w-full max-w-md" />
-        <button onClick={fetchJobs} className="ml-2 py-1 px-3 bg-blue-600 text-white rounded">Search</button>
+      <div className="mb-4 flex flex-col sm:flex-row gap-2 items-start">
+        <input placeholder="Search by title" value={q} onChange={e=>setQ(e.target.value)} className="p-2 border rounded w-full sm:max-w-md" />
+        <button onClick={fetchJobs} className="py-2 px-3 bg-blue-600 text-white rounded w-full sm:w-auto">Search</button>
       </div>
 
       <div className="grid gap-3">

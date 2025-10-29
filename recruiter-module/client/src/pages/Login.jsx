@@ -24,6 +24,9 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-blue-100 p-6">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
+        <div className="mb-4">
+          <button onClick={()=>nav(-1)} className="text-sm text-gray-600 hover:text-gray-800">← Back</button>
+        </div>
         <h1 className="text-2xl font-semibold mb-6">LOGIN</h1>
         {err && <div className="text-red-600 mb-2">{err}</div>}
         <form onSubmit={submit}>

@@ -21,11 +21,20 @@ export default function Signup() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-blue-100 p-6">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
+        <div className="mb-4">
+          <button onClick={()=>nav(-1)} className="text-sm text-gray-600 hover:text-gray-800">← Back</button>
+        </div>
         <h1 className="text-2xl font-semibold mb-6">SIGN UP</h1>
         {msg && <div className="mb-2 text-sm text-green-600">{msg}</div>}
         <form onSubmit={submit}>
+          <label className="block text-sm font-medium text-gray-700">Full name</label>
+          <input placeholder="Full name" value={form.name} onChange={e=>setForm({...form,name:e.target.value})} required className="w-full mb-3 p-3 border rounded" />
+
+          <label className="block text-sm font-medium text-gray-700">Username</label>
+          <input placeholder="Username" value={form.username} onChange={e=>setForm({...form,username:e.target.value})} required className="w-full mb-3 p-3 border rounded" />
+
           <label className="block text-sm font-medium text-gray-700">Email</label>
-          <input placeholder="Email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})} required className="w-full mb-4 p-3 border rounded" />
+          <input placeholder="Email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})} required className="w-full mb-3 p-3 border rounded" />
 
           <label className="block text-sm font-medium text-gray-700">Password</label>
           <input placeholder="Password" value={form.password} onChange={e=>setForm({...form,password:e.target.value})} required type="password" className="w-full mb-4 p-3 border rounded" />
