@@ -49,24 +49,5 @@ Important files
 	- pages: `client/src/pages/CreateJob.jsx`, `JobList.jsx`, `JobDetail.jsx`, `PreviewPost.jsx`, `Signup.jsx`, `Login.jsx`
 	- api helper: `client/src/api/api.js`
 
-Quick API overview
-- POST /api/auth/signup — create user
-- POST /api/auth/login — returns { token, user }
-- POST /api/jobs/save — create/update job draft
-- POST /api/jobs/publish/:id — publish a saved job
-- GET /api/jobs — list owner's jobs (auth)
-- GET /api/jobs/:id — job detail (auth, owner only)
-- DELETE /api/jobs/:id — delete job (auth, owner only)
-
-Notes and next steps
-- The client stores JWT in localStorage and attaches it to requests.
-- Autosave is debounced and uses a client-side lock to avoid duplicate drafts.
-- Recommended improvements: server-side validation, disable Publish until valid, add tests and pagination.
-
-If you want, I can:
-- Tidy the PostSuccess page and add mobile polish
-- Add server-side validation with express-validator
-- Add a short CONTRIBUTING or DEVELOPMENT section with commands for tests
-
-Thank you — tell me which part you'd like me to expand or improve next.
+Thank you 
 
